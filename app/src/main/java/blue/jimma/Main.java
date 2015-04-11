@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
+
+import blue.jimma.backend.myApi.model.User;
 
 
 public class Main extends ActionBarActivity {
@@ -50,7 +54,17 @@ public class Main extends ActionBarActivity {
         final EditText test = (EditText) findViewById(R.id.editText);
         String username = test.getText().toString();
 
-        new LoginAsyncTask().execute(new Pair<Context, String>(this, username));
-    }
 
+        new LoginAsyncTask() {
+            protected void onPostExecute(User u) {
+                if (u != null) {
+                    StaticUser.user = u;
+                    Toast.makeText(context, u.getId().toString(), Toast.LENGTH_LONG).show();
+                    setContentView(R.layout.activity_feed);
+                }
+            }
+        }.execute(new Pair<Context, String>(this, username));
+
+
+    }
 }

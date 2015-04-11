@@ -20,7 +20,7 @@ import blue.jimma.backend.myApi.model.User;
  */
 class LoginAsyncTask extends AsyncTask<Pair<Context, String>, Void, User> {
     private static MyApi myApiService = null;
-    private Context context;
+    protected Context context;
 
     @Override
     protected User doInBackground(Pair<Context, String>... params) {
