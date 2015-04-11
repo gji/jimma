@@ -69,10 +69,12 @@ public class Endpoint {
     }
 
     @ApiMethod(name = "getUser")
-    public User getUser(@Named("name") String name) {
+    public User getUser(@Named("name") String name) throws Exception {
         for(User u: users) {
-            if(u.username.equals(name)) {
+            if(u.getUsername().equals(name)) {
                 return u;
+            } else {
+                throw new Exception("User:" + name);
             }
         }
         return null;

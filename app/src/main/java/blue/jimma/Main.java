@@ -1,7 +1,10 @@
 package blue.jimma;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.Menu;
@@ -14,15 +17,17 @@ import android.widget.Toast;
 import blue.jimma.backend.myApi.model.User;
 
 
-public class Main extends ActionBarActivity {
+public class Main extends Activity {
+
+    Fragment login = new PlaceholderFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+            getFragmentManager().beginTransaction()
+                    .add(R.id.container, login)
                     .commit();
         }
     }
@@ -48,6 +53,11 @@ public class Main extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void takePic(View view) {
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 
     public void login(View view) {

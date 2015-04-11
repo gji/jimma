@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/m2IDhUOBtq4OlTtecNTWCny8jJY\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/nC-ACPW6IbYKM22WwCR00qf7h1g\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -82,6 +82,22 @@
     }
    }
   },
+  "Post": {
+   "id": "Post",
+   "type": "object"
+  },
+  "PostCollection": {
+   "id": "PostCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Post"
+     }
+    }
+   }
+  },
   "User": {
    "id": "User",
    "type": "object",
@@ -93,6 +109,17 @@
   }
  },
  "methods": {
+  "getPosts": {
+   "id": "myApi.getPosts",
+   "path": "postcollection",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "PostCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "getUser": {
    "id": "myApi.getUser",
    "path": "user/{name}",
