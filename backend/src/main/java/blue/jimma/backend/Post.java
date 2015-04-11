@@ -8,7 +8,5 @@ import java.awt.image.BufferedImage;
 public class Post {
     BufferedImage image;
     String comment;
-
-    int id;
     User u;
 }
