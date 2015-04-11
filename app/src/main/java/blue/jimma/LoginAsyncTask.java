@@ -41,11 +41,4 @@ class LoginAsyncTask extends AsyncTask<Pair<Context, String>, Void, User> {
             return null;
         }
     }
-
-    @Override
-    protected void onPostExecute(User u) {
-        if(u != null) {
-            Toast.makeText(context, u.getId().toString(), Toast.LENGTH_LONG).show();
-        }
-    }
 }

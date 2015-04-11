@@ -59,7 +59,6 @@ public class Main extends ActionBarActivity {
             protected void onPostExecute(User u) {
                 if (u != null) {
                     StaticUser.user = u;
-                    Toast.makeText(context, u.getId().toString(), Toast.LENGTH_LONG).show();
                     setContentView(R.layout.activity_feed);
                 }
             }

@@ -12,6 +12,7 @@ buildscript {
 
 repositories {
     jcenter();
+    mavenCentral();
 }
 
 apply plugin: 'java'
@@ -26,6 +27,7 @@ dependencies {
     compile 'com.google.appengine:appengine-endpoints:1.9.14'
     compile 'com.google.appengine:appengine-endpoints-deps:1.9.14'
     compile 'javax.servlet:servlet-api:2.5'
+    compile 'org.json:json:20141113'
 }
 
 appengine {

@@ -18,12 +18,14 @@ import javax.inject.Named;
  * An endpoint class we are exposing
  */
 @Api(name = "myApi", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.jimma.blue", ownerName = "backend.jimma.blue", packagePath = ""))
-public class MyEndpoint {
+public class Endpoint {
 
     static ArrayList<User> users = new ArrayList<User>();
 
     {
         users.add(new User("test"));
+
+
     }
 
     @ApiMethod(name = "getUser")
