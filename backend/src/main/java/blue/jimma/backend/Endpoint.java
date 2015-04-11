@@ -21,6 +21,7 @@ import javax.inject.Named;
 public class Endpoint {
 
     static ArrayList<User> users = new ArrayList<User>();
+    static ArrayList<Post> posts = new ArrayList<Post>();
 
     {
         users.add(new User("test"));
@@ -36,6 +37,11 @@ public class Endpoint {
             }
         }
         return null;
+    }
+
+    @ApiMethod(name = "getPosts")
+    public ArrayList<Post> getPosts() {
+        return posts;
     }
 
     /**
