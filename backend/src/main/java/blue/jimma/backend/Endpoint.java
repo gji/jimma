@@ -10,6 +10,10 @@ import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.logging.Logger;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,11 +28,15 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.inject.Named;
 
+import sun.misc.IOUtils;
+
 /**
  * An endpoint class we are exposing
  */
 @Api(name = "myApi", version = "v1", namespace = @ApiNamespace(ownerDomain = "backend.jimma.blue", ownerName = "backend.jimma.blue", packagePath = ""))
 public class Endpoint {
+
+    private static final Logger log = Logger.getLogger(Endpoint.class.getName());
 
     static ArrayList<User> users = new ArrayList<User>();
     static ArrayList<Post> posts = new ArrayList<Post>();
@@ -54,13 +62,33 @@ public class Endpoint {
             for(int i = 0; i < posts.length(); i++) {
                 String imgUr = posts.getJSONObject(i).getJSONObject("data").getString("url");
                 String comment = posts.getJSONObject(i).getJSONObject("data").getString("title");
+                URL url = new URL(imgUr);
 
-                BufferedImage b = ImageIO.read(new URL(imgUr));
                 Post p = new Post();
                 p.comment = comment;
-                p.image = b;
                 p.u = test;
                 posts.put(p);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                InputStream ims = null;
+                try {
+                    ims = url.openStream();
+                    byte[] byteChunk = new byte[4096]; // Or whatever size you want to read in at a time.
+                    int n;
+
+                    while ( (n = ims.read(byteChunk)) > 0 ) {
+                        baos.write(byteChunk, 0, n);
+                    }
+                    p.image = baos.toByteArray();
+                }
+                catch (IOException e) {
+                    System.err.printf ("Failed while reading bytes from %s: %s", url.toExternalForm(), e.getMessage());
+                    e.printStackTrace ();
+                    // Perform any other exception handling that's appropriate.
+                }
+                finally {
+                    if (is != null) { is.close(); }
+                }
             }
 
         }
@@ -71,11 +99,11 @@ public class Endpoint {
 
     @ApiMethod(name = "getUser")
     public User getUser(@Named("name") String name) throws Exception {
+        log.info("here!!!");
+        log.info(Integer.toString(users.size()));
         for(User u: users) {
             if(u.getUsername().equals(name)) {
                 return u;
-            } else {
-                throw new Exception("User:" + name);
             }
         }
         return null;

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/nC-ACPW6IbYKM22WwCR00qf7h1g\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/3o8g3R43_fs7ez0fQ4zsCrzlof0\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -107,6 +107,20 @@
   }
  },
  "methods": {
+  "myApi.addPost": {
+   "id": "myApi.addPost",
+   "parameters": {
+    "resource": {
+     "$ref": "Post"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "myApi.getPosts": {
    "id": "myApi.getPosts",
    "allowGet": true,

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Created by gji on 4/11/15.
  */
 public class Post {
-    BufferedImage image;
+    byte[] image;
     String comment;
     User u;
     ArrayList<Comment> comments;
