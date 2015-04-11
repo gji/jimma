@@ -2,6 +2,7 @@ package blue.jimma;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -90,6 +92,8 @@ public class CameraActivity extends ActionBarActivity {
                 // Image captured and saved to fileUri specified in the Intent
                 Toast.makeText(this, "Image saved to:\n" +
                         url.getPath(), Toast.LENGTH_LONG).show();
+                ImageView iv = (ImageView)findViewById(R.id.imageView);
+                iv.setImageURI(url);
             } else if (resultCode == Activity.RESULT_CANCELED) {
                 Toast.makeText(this, "cancelled!", Toast.LENGTH_LONG).show();
             } else {
