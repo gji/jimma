@@ -63,7 +63,8 @@ public class Endpoint {
                 posts.put(p);
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
         }
 
     }
@@ -76,6 +77,11 @@ public class Endpoint {
             }
         }
         return null;
+    }
+
+    @ApiMethod(name = "addPost")
+    public void addPost(Post post) {
+        posts.add(post);
     }
 
     @ApiMethod(name = "getPosts")
