@@ -2,16 +2,12 @@ package blue.jimma;
 
 import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Pair;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import android.widget.EditText;
 
 
 public class Main extends ActionBarActivity {
@@ -25,8 +21,6 @@ public class Main extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
     }
 
 
@@ -52,19 +46,11 @@ public class Main extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
+    public void login(View view) {
+        final EditText test = (EditText) findViewById(R.id.editText);
+        String username = test.getText().toString();
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
+        new LoginAsyncTask().execute(new Pair<Context, String>(this, username));
     }
+
 }
