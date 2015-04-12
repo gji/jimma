@@ -97,6 +97,21 @@ public class Endpoint {
 
     }
 
+    @ApiMethod(name = "getComments")
+    public ArrayList<Comment> getComments(Post post) {
+        return post.comments;
+    }
+
+    @ApiMethod(name = "getPosts")
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    @ApiMethod(name = "addPost")
+    public void addPost(Post post) {
+        posts.add(post);
+    }
+
     @ApiMethod(name = "getUser")
     public User getUser(@Named("name") String name) throws Exception {
         log.info("here!!!");
@@ -109,15 +124,6 @@ public class Endpoint {
         return null;
     }
 
-    @ApiMethod(name = "addPost")
-    public void addPost(Post post) {
-        posts.add(post);
-    }
-
-    @ApiMethod(name = "getPosts")
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
 
     /**
      * A simple endpoint method that takes a name and says Hi back
